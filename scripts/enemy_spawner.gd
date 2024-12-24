@@ -61,7 +61,7 @@ func _on_day_changed():
 
 
 #______________________________________________________________________
-#new version
+#new version assads
 
 # extends Node2D
 
