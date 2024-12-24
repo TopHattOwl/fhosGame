@@ -61,10 +61,11 @@ func _on_day_changed():
 
 
 #______________________________________________________________________
+#new version
 
 # extends Node2D
 
-# @export var base_spawn_rate := 1.0 asd
+# @export var base_spawn_rate := 1.0 
 # @export var max_spawn_rate := 5.0
 # @export var enemy_scene : PackedScene
 
