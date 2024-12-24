@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://fhxgvcafj6mv"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_62nkh"]
+[ext_resource type="Texture2D" uid="uid://by8rgg6njjavr" path="res://player.png" id="2_01jo2"]
+[ext_resource type="PackedScene" uid="uid://b2aooxqo82px4" path="res://scenes/gun.tscn" id="3_phg4w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cboqq"]
+size = Vector2(76, 94)
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_62nkh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.5)
+texture = ExtResource("2_01jo2")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+
+[node name="CollisionArea" type="Area2D" parent="." groups=["player"]]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea"]
+shape = SubResource("RectangleShape2D_cboqq")
+
+[node name="Timer_iframes" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Gun" parent="." instance=ExtResource("3_phg4w")]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Timer" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 1313.0
+offset_top = -616.0
+offset_right = 1353.0
+offset_bottom = -593.0
+
+[connection signal="area_entered" from="CollisionArea" to="." method="_on_collision_area_area_entered"]
+[connection signal="area_exited" from="CollisionArea" to="." method="_on_collision_area_area_exited"]
+[connection signal="timeout" from="Timer_iframes" to="." method="_on_timer_timeout"]

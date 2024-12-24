@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2aooxqo82px4"]
+
+[ext_resource type="Script" path="res://scripts/gun.gd" id="1_tnvbk"]
+[ext_resource type="Texture2D" uid="uid://bad327m25nhjc" path="res://assets/guns_gameassets/PNG/pistol2.png" id="2_veoei"]
+
+[node name="Gun" type="Node2D"]
+script = ExtResource("1_tnvbk")
+
+[node name="Timer_Shoot" type="Timer" parent="."]
+one_shot = true
+
+[node name="Timer_Reload" type="Timer" parent="."]
+one_shot = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(5.96046e-08, -9)
+scale = Vector2(0.644578, 0.644578)
+texture = ExtResource("2_veoei")
+centered = false
+
+[connection signal="timeout" from="Timer_Shoot" to="." method="_on_timer_shoot_timeout"]
+[connection signal="timeout" from="Timer_Reload" to="." method="_on_timer_reload_timeout"]
